@@ -5,36 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 <base target="_blank">
 <script src="SimpleTime.js"></script>
+
 </head>
 
 <body onload="SimpleTime(); setInterval('SimpleTime()', 1000 )">
-<div class="slider" id="slider"> 
-<form id="searchform" onsubmit="launchSite(); document.getElementById('date').classList.toggle('active'); document.getElementById('slider').classList.toggle('active'); document.getElementById('search').classList.toggle('active'); document.getElementById('google').classList.toggle('active');">
- <input id="search" class="search" type="text" name="q" size="25" maxlength="255" /> 
- <input id="submit" type="submit" value="" />
+<div class="slider" id="slider">
+<form id="searchform" onsubmit="googleSearch(); toggle(); ">
+<input id="search" class="search" type="text" name="q" size="25"  placeholder="Search" maxlength="255" />
+<input id="submit" type="submit" value="" />
 </form>
 </div>
-<div class="google" id="google" onclick="document.getElementById('date').classList.toggle('active'); document.getElementById('slider').classList.toggle('active'); document.getElementById('search').classList.toggle('active'); document.getElementById('google').classList.toggle('active');"></div>
+<div class="google" id="google" onclick="toggle();"></div>
 
 <div id="date" class="date">
-<div id="monthname" onclick="launchCal();"></div>
+<div id="monthname"></div>
 <br>
 <div id="day"></div>
 </div>
 
 <script type="text/cycript">
 
- function launchCal() {
-  
- }
 
- function launchSite() {
+function googleSearch() {
 var query = document.getElementById("search").value;
 var searchfixed = encodeURI(query);
 [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.google.com/search?q=" + searchfixed]];
- }
+};
+
+function toggle() {
+document.getElementById('date').classList.toggle('active');
+document.getElementById('slider').classList.toggle('active');
+document.getElementById('search').classList.toggle('active');
+document.getElementById('google').classList.toggle('active');
+};
+
+
+
 </script>
 
 </body>
 
 </html>
+
+ 
